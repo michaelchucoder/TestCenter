@@ -5,6 +5,8 @@ import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -195,12 +197,12 @@ public class StringUtils {
         return resultSpan;
     }
 
-    public static SpannableString getColorSpanReg(String srcStr,String regularExpression,int resColor) {
+    public static SpannableString getColorSpanReg(String srcStr, String regularExpression, int resColor) {
 
-        if(StringUtils.isEmpty(srcStr))
+        if (StringUtils.isEmpty(srcStr))
             return new SpannableString("--");
 
-        if (StringUtils.isEmpty(regularExpression)||!srcStr.contains(regularExpression) )
+        if (StringUtils.isEmpty(regularExpression) || !srcStr.contains(regularExpression))
             return new SpannableString(srcStr);
 
 
@@ -216,5 +218,16 @@ public class StringUtils {
         }
 
         return resultSpan;
+    }
+
+
+    public static List<String> getRegEx(String input, String regex) {
+        List<String> stringList = new ArrayList<>();
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(input);
+        while (m.find())
+            stringList.add(m.group());
+
+        return stringList;
     }
 }
