@@ -1,5 +1,13 @@
 package com.michael.testcenter.utils;
 
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * <pre>
  *     author: android
@@ -170,5 +178,43 @@ public class StringUtils {
             }
         }
         return new String(chars);
+    }
+
+    public static SpannableString getSizeSpanReg(String srcStr, String regularExpression, int size) {
+
+        SpannableString resultSpan = new SpannableString(srcStr);
+
+        Pattern p = Pattern.compile(regularExpression);
+        Matcher m = p.matcher(srcStr);
+
+        while (m.find() && !regularExpression.equals("")) {
+
+            resultSpan.setSpan(new AbsoluteSizeSpan(size, true), m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return resultSpan;
+    }
+
+    public static SpannableString getColorSpanReg(String srcStr,String regularExpression,int resColor) {
+
+        if(StringUtils.isEmpty(srcStr))
+            return new SpannableString("--");
+
+        if (StringUtils.isEmpty(regularExpression)||!srcStr.contains(regularExpression) )
+            return new SpannableString(srcStr);
+
+
+        SpannableString resultSpan = new SpannableString(srcStr);
+
+        Pattern p = Pattern.compile(regularExpression);
+        Matcher m = p.matcher(srcStr);
+
+        while (m.find() && !regularExpression.equals("")) {
+
+            resultSpan.setSpan(new ForegroundColorSpan(resColor),
+                    m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return resultSpan;
     }
 }
