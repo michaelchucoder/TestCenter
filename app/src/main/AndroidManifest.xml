@@ -3,6 +3,7 @@
     package="com.michael.testcenter">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE" />
 
     <application
         android:allowBackup="true"
