@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         mWakeLockMsg = (TextView) findViewById(R.id.wakelock_txt);
         mServiceComponent = new ComponentName(this, TestJobService.class);
+
         Intent startServiceIntent = new Intent(this, TestJobService.class);
         startService(startServiceIntent);
 
