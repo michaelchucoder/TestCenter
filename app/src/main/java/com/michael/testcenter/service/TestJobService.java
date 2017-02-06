@@ -20,6 +20,7 @@ import java.net.URL;
  */
 
 public class TestJobService extends JobService {
+
     private static final String LOG_TAG = "TestJobService";
 
     @Override
